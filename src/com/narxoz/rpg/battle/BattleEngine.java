@@ -7,8 +7,7 @@ public final class BattleEngine {
     private static BattleEngine instance;
     private Random random = new Random(1L);
 
-    private BattleEngine() {
-    }
+    private BattleEngine() { }
 
     public static BattleEngine getInstance() {
         if (instance == null) {
@@ -23,12 +22,10 @@ public final class BattleEngine {
     }
 
     public void reset() {
-        // TODO: reset any battle state if you add it
+        this.random = new Random(1L);
     }
 
     public EncounterResult runEncounter(List<Combatant> teamA, List<Combatant> teamB) {
-        // TODO: validate inputs and run round-based battle
-        // TODO: use random if you add critical hits or target selection
         EncounterResult result = new EncounterResult();
         result.setWinner("TBD");
         result.setRounds(0);
