@@ -16,12 +16,10 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("=== RPG Battle Engine Demo ===\n");
 
-        // TODO: Create heroes and enemies
         Warrior warrior = new Warrior("Arthas");
         Mage mage = new Mage("Jaina");
         Goblin goblin = new Goblin();
 
-        // TODO: Wrap with adapters
         List<Combatant> heroes = new ArrayList<>();
         heroes.add(new HeroCombatantAdapter(warrior));
         heroes.add(new HeroCombatantAdapter(mage));
@@ -29,18 +27,19 @@ public class Main {
         List<Combatant> enemies = new ArrayList<>();
         enemies.add(new EnemyCombatantAdapter(goblin));
 
-        // TODO: Demonstrate Singleton behavior
         BattleEngine engineA = BattleEngine.getInstance();
         BattleEngine engineB = BattleEngine.getInstance();
-        System.out.println("Same instance? " + (engineA == engineB));
+        System.out.println("Singleton check (engineA == engineB): " + (engineA == engineB));
         System.out.println();
 
-        // TODO: Run battle and print summary
+        engineA.reset();
         engineA.setRandomSeed(42L);
+
         EncounterResult result = engineA.runEncounter(heroes, enemies);
 
         System.out.println("Winner: " + result.getWinner());
         System.out.println("Rounds: " + result.getRounds());
+        System.out.println("\n--- Battle Log ---");
         for (String line : result.getBattleLog()) {
             System.out.println(line);
         }
